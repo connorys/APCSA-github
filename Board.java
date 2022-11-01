@@ -87,24 +87,35 @@ public class  Board
     return tempPhrase;
   }  
 
-  public boolean guessLetter(String guess)
+  /**
+   * returns true if guess is in the phrase else returns false
+   * 
+   * Preconditiion:
+   *  guess is a letter and a string
+   *  phrase exists and is a string
+   * 
+   * Postcondition:
+   *  solvedPhrase now includes the guessed letter in place of _'s depending on where the guess occurs in the phrase
+   *  foundLetter is assigned either true or false depending on if the guess was in the phrase or not
+   */
+  public boolean guessLetter(String guess) //creates method called guessLetter
   {
-    boolean foundLetter = false;
-    String newSolvedPhrase = "";
+    boolean foundLetter = false; //initializes boolean foundLetter as false
+    String newSolvedPhrase = ""; //initializes newSolvedPhrase as an empty string
     
-    for (int i = 0; i < phrase.length(); i++)
+    for (int i = 0; i < phrase.length(); i++) //iterates through all characters in phrase
     {
-      if (phrase.substring(i, i + 1).equals(guess))
+      if (phrase.substring(i, i + 1).equals(guess)) //checks if each letter in phrase equals the guessed letter
       {
-        newSolvedPhrase += guess + " ";
-        foundLetter = true;
+        newSolvedPhrase += guess + " "; //adds guessed letter followed by space to newSolvedPhrase
+        foundLetter = true; //sets foundLetter to true
       }
-      else
+      else //executes if letter in phrase doesn't equal the guessed letter
       {
-        newSolvedPhrase += solvedPhrase.substring(i * 2, i * 2 + 1) + " ";  
-      }
+        newSolvedPhrase += solvedPhrase.substring(i * 2, i * 2 + 1) + " ";  //adds an underscore followed by a space to newSolvedPhrase
+      } 
     }
-    solvedPhrase = newSolvedPhrase;
-    return foundLetter;
+    solvedPhrase = newSolvedPhrase; //reassigns solvedPhrase to newSolvedPhrase
+    return foundLetter; //returns boolean foundLetter
   } 
 } 
