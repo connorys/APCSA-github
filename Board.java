@@ -20,7 +20,13 @@ public class  Board
     System.out.println("Phrase: " + phrase);
   }
   /* your code here - accessor(s) */
-  
+  public String getSolvedPhrase(){
+    return solvedPhrase;
+  }
+
+  public String getCurrentLetterValue(){
+    return currentLetterValue;
+  }
   /* your code here - mutator(s)  */
 
 
