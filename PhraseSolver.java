@@ -28,7 +28,7 @@ public class PhraseSolver
     boolean solved = false;
     int currentPlayer = 1;
 
-    Scanner input = new Scanner(System.in);
+    //Scanner input = new Scanner(System.in);--------------------------------------------------------
     
     boolean correct = true;
     while (!solved) 
@@ -36,7 +36,10 @@ public class PhraseSolver
       
       /* your code here - game logic */
       
-      
+      System.out.println(player1.getName());
+      System.out.println(player1.getPoints());
+      System.out.println(game.getSolvedPhrase());
+      System.out.println(game.getCurrentLetterValue());
       /* your code here - determine how game ends */
       solved = true; 
     } 

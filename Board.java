@@ -24,7 +24,7 @@ public class  Board
     return solvedPhrase;
   }
 
-  public String getCurrentLetterValue(){
+  public int getCurrentLetterValue(){
     return currentLetterValue;
   }
   /* your code here - mutator(s)  */
