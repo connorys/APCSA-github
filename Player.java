@@ -33,4 +33,13 @@ public class Player
     return name;
   }
   /* your code here - mutator(s) */ 
+  void setName(){
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter a new player name.");
+    name = sc.nextLine();
+    System.out.println("name has been changed to "+ name);
+  }
+  void addToPoints (int value){
+    points += value;
+  }
 }
