@@ -48,16 +48,20 @@ public class PhraseSolver
           string = sc.nextLine();
           correct = game.guessLetter(string);
           if (correct) {
-            System.out.println("Your guessed letter was in the phrase");
+            if (game.getSolvedPhrase().indexOf("_")==-1){
+              System.out.println("You guessed the phrase");
+              solved = true;
+            } else {
+              System.out.println("Your guessed letter was in the phrase");
+            }
             if (currentPlayer == 1){
               player1.addToPoints(letterValue*game.letterCount(string));
-            }else{
+            } else{
               player2.addToPoints(letterValue*game.letterCount(string));
             }
           } else {
             System.out.println("Your guessed letter was not in the phrase");
           }
-          solved = game.isSolved(game.getSolvedPhrase());
         }
         else if (string.equals("phrase")){
           validInput = true;
