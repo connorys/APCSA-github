@@ -33,50 +33,72 @@ public class PhraseSolver
     boolean correct = true;
     while (!solved) 
     {
+      boolean validInput = false;
       System.out.println(game.getSolvedPhrase());
       /* your code here - game logic */
       Scanner sc = new Scanner(System.in);
       System.out.println("Do you want to guess the phrase or a letter?");
-      String string = sc.nextLine();
-      game.setLetterValue();
-      int letterValue = game.getCurrentLetterValue();
-      if (string.equals("letter")){
-        System.out.println("Enter a letter");
-        string = sc.nextLine();
-        correct = game.guessLetter(string);
-        if (correct) {
-          System.out.println("Your guessed letter was in the phrase");
-          if (currentPlayer == 1){
-            player1.addToPoints(letterValue);
-          }else{
-            player2.addToPoints(letterValue);
+      while(!validInput) {
+        String string = sc.nextLine();
+        game.setLetterValue();
+        int letterValue = game.getCurrentLetterValue();
+        if (string.equals("letter")){
+          validInput = true;
+          System.out.println("Enter a letter");
+          string = sc.nextLine();
+          correct = game.guessLetter(string);
+          if (correct) {
+            System.out.println("Your guessed letter was in the phrase");
+            if (currentPlayer == 1){
+              player1.addToPoints(letterValue*game.letterCount(string));
+            }else{
+              player2.addToPoints(letterValue*game.letterCount(string));
+            }
+          } else {
+            System.out.println("Your guessed letter was not in the phrase");
+          }
+          solved = game.isSolved(game.getSolvedPhrase());
+        }
+        else if (string.equals("phrase")){
+          validInput = true;
+          System.out.println("Enter a phrase");
+          string = sc.nextLine();
+          if (string.equals(game.getPhrase())){
+            if (currentPlayer == 1){
+              player1.addToPoints(letterValue*game.underscoreCount());
+            }else{
+              player2.addToPoints(letterValue*game.underscoreCount());
+            }
+            solved = true;
           }
         } else {
-          System.out.println("Your guessed letter was not in the phrase");
+            System.out.println("Type 'letter' or 'phrase'.");
         }
-        solved = game.isSolved(game.getSolvedPhrase());
+        
       }
-      else if (string.equals("phrase")){
-        System.out.println("Enter a phrase");
-        string = sc.nextLine();
-        if (string.equals(game.getPhrase())){
-          if (currentPlayer == 1){
-            player1.addToPoints(1000000);
-          }else{
-            player2.addToPoints(1000000);
-          }
-          solved = true;
-        }
-      }
-
       /* your code here - determine how game ends */     
       if(currentPlayer == 1 && !correct){
         currentPlayer = 2;
+        System.out.println();
+        System.out.println("Begin " + player2.getName() + "'s turn");
       } else if (currentPlayer == 2 && !correct){
         currentPlayer = 1;
+        System.out.println();
+        System.out.println("Begin " + player1.getName() + "'s turn");
       }
-    } 
-   
+    }
+    if (player1.getPoints() > player2.getPoints()){
+      System.out.println(player1.getName() + " wins!");
+      
+    }else if (player2.getPoints() > player1.getPoints()){
+      System.out.println(player2.getName() + " wins!");
+     
+    }else{
+      System.out.println("You tied.");
+    }
+    System.out.println(player1.getName() + ": " + player1.getPoints());
+    System.out.println(player2.getName() + ": " + player2.getPoints());
   }
+  
   
 }

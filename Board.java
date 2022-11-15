@@ -17,7 +17,7 @@ public class  Board
     solvedPhrase = "";
     phrase = loadPhrase();
     setLetterValue();
-    System.out.println("Phrase: " + phrase);
+    //System.out.println("Phrase: " + phrase);       //for testing
   }
   /* your code here - accessor(s) */
   public String getPhrase(){
@@ -126,5 +126,31 @@ public class  Board
     }
     solvedPhrase = newSolvedPhrase; //reassigns solvedPhrase to newSolvedPhrase
     return foundLetter; //returns boolean foundLetter
+  }
+  
+  public int letterCount(String guess) //creates method called guessLetter
+  {
+    int count = 0;
+    for (int i = 0; i < phrase.length(); i++) //iterates through all characters in phrase
+    {
+      if (phrase.substring(i, i + 1).equals(guess)) //checks if each letter in phrase equals the guessed letter
+      {
+        count++;
+      }
+    }
+    return count; //returns int count
+  } 
+ 
+  public int underscoreCount() //creates method called guessLetter
+  {
+    int count = 0;
+    for (int i = 0; i < solvedPhrase.length(); i++) //iterates through all characters in phrase
+    {
+      if (solvedPhrase.substring(i, i + 1).equals("_")) //checks if each letter in phrase equals the guessed letter
+      {
+        count++;
+      }
+    }
+    return count; //returns int count
   } 
 } 
