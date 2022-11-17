@@ -42,7 +42,7 @@ public class PhraseSolver
         String string = sc.nextLine();
         game.setLetterValue();
         int letterValue = game.getCurrentLetterValue();
-        if (string.equals("letter")){
+        if (string.equals("letter") || string.equals("l")){
           validInput = true;
           System.out.println("Enter a letter");
           string = sc.nextLine();
@@ -73,6 +73,7 @@ public class PhraseSolver
             }else{
               player2.addToPoints(letterValue*game.underscoreCount());
             }
+            correct = true;
             solved = true;
           }
         } else {
